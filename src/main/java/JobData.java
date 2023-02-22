@@ -5,10 +5,7 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by LaunchCode
@@ -99,7 +96,21 @@ public class JobData {
         loadData();
 
         // TODO - implement this method
-        return null;
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+        for (HashMap<String, String> column: allJobs) {
+
+            for (String key : column.keySet()) {  //each property of each element
+                String aValue = column.get(key);  // for each key create new variable called value
+
+
+                if (aValue.toLowerCase().contains(value.toLowerCase())) {  //the search term and the value both lowercase
+                    jobs.add(column);
+
+                    break;
+                }
+            }
+        }
+        return jobs;    //return what built in this array & output that array list
     }
 
     /**
